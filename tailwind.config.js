@@ -18,6 +18,12 @@ export default {
         profile: '#0B1B2B',
         background: '#071422',
         input: '#040F1A'
+      },
+      margin: {
+        19: '4.5rem'
+      },
+      width: {
+        card: '26rem'
       }
     },
   },
