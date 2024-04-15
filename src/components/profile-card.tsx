@@ -2,7 +2,7 @@ import { LucideArrowUpRightFromSquare, LucideGithub, LucideBuilding, LucideUsers
 
 export function ProfileCard() {
   return (
-    <div className="flex justify-start bg-profile rounded-[10px] p-8 w-full max-w-4xl -mt-24 gap-8 shadow-md">
+    <div className="flex justify-start bg-profile rounded-[10px] p-8 w-full max-w-864 -mt-24 gap-8 shadow-md">
         <img src="https://github.com/matheusc1.png" className='size-36 rounded-lg' alt="" />
 
         <div className="flex flex-col justify-between w-full">

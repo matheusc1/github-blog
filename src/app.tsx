@@ -11,7 +11,7 @@ export function App() {
 
       <ProfileCard />
 
-      <div className="w-full max-w-4xl flex justify-between items-center mt-19">
+      <div className="w-full max-w-864 flex justify-between items-center mt-19">
         <p className="text-subtitle text-lg font-bold">Publicações</p>
         <span className="text-span text-sm">6 publicações</span>
       </div>
@@ -19,7 +19,7 @@ export function App() {
       <input
         type="text"
         placeholder="Buscar conteúdo"
-        className="mt-3 w-full max-w-4xl border border-border rounded-md py-3 px-4 bg-input
+        className="mt-3 w-full max-w-864 border border-border rounded-md py-3 px-4 bg-input
         text-text placeholder:text-label outline-none focus-visible:ring-1 focus-visible:ring-blue"
       />
 

@@ -23,7 +23,10 @@ export default {
         19: '4.5rem'
       },
       width: {
-        card: '26rem'
+        card: '26rem',
+      },
+      maxWidth: {
+        864: '54rem'
       }
     },
   },

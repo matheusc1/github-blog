@@ -9,8 +9,9 @@ export function RepoCard() {
         <span className="text-sm text-span">Há 1 dia</span>
       </div>
 
-      <p className="text-span mt-5 text-ellipsis">
+      <p className="text-span mt-5 text-ellipsis max-w-[352px] line-clamp-4">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus laborum minima iste quaerat minus numquam veniam quasi aut dolore. Exercitationem autem amet commodi.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sed, sint ipsam cupiditate praesentium tempora libero quisquam enim dolorem dolore voluptates quasi ut mollitia recusandae sapiente officia illum, dolores commodi.
       </p>
     </button>
   )
