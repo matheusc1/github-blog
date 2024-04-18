@@ -10,7 +10,7 @@ export function ProfileCard() {
           <div className="flex justify-between items-center">
             <p className="font-bold text-2xl text-title">Matheus Cardoso</p>
 
-            <div className="flex gap-2 items-center cursor-pointer border-0 border-blue hover:border-b">
+            <div className="flex gap-2 items-center cursor-pointer  border-b border-transparent hover:border-blue hover:border-b">
               <span className="uppercase text-blue font-bold text-xs">Github</span>
               <LucideArrowUpRightFromSquare strokeWidth={3} className="size-3 text-blue" />
             </div>
