@@ -54,6 +54,24 @@ export function Post() {
           </div>
         </div>
       </div>
+
+      <div className="w-full max-w-864 p-8 flex flex-col">
+        <p className="mb-6 text-text">
+          <strong>Programming languages all have built-in data structures, but these often differ from one language to another. </strong> 
+          This article attempts to list the built-in data structures available in JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
+        </p>
+
+        <span className="text-blue underline">Dynamic typing</span>
+        <p>
+          JavaScript is a loosely typed and dynamic language. Variables in JavaScript are not directly associated with any particular value type, and any variable can be assigned (and re-assigned) values of all types:
+        </p>
+
+        <div className="bg-post p-4 flex flex-col items-start justify-center rounded mt-6 mb-20">
+          <p>let foo = 42; <span className="ml-6 text-[#4F6173]">// foo is now a number</span></p>
+          <p>foo = bar; <span className="ml-10 text-[#4F6173]">// foo is now a string</span></p>
+          <p>foo = true; <span className="ml-8 text-[#4F6173]">// foo is now a boolean</span></p>
+        </div>
+      </div>
     </div>
   )
 }
