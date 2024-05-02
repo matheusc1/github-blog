@@ -43,8 +43,6 @@ export function ProfileCard() {
     getUserInfo()
   }, [])
 
-  console.log(userInfo)
-
   return (
     <div className="flex justify-start bg-profile rounded-[10px] p-8 w-full max-w-864 -mt-24 gap-8 shadow-md">
         <img src={userInfo?.avatarUrl} className='size-36 rounded-lg' alt="" />
