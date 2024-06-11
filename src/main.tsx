@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/post",
+    path: "/post/:issueNumber",
     element: <Post />,
   },
 ])
