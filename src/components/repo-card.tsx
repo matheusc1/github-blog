@@ -10,11 +10,12 @@ dayjs.locale('pt-br')
 
 interface RepoCardProps {
   issue: Issue
+  repoAndUser: string
 }
 
-export function RepoCard({ issue }: RepoCardProps) {
+export function RepoCard({ issue, repoAndUser }: RepoCardProps) {
   return (
-    <Link to={`/post/${issue.number}`}>
+    <Link to={`/post/${issue.number}`} state={repoAndUser}>
       <button className="flex flex-col text-left w-card bg-post rounded-lg h-64 p-8 overflow-hidden
       relative outline-none hover:ring-2 hover:ring-label focus-visible:ring-2 focus-visible:ring-blue">
         <div className="w-full flex justify-between">

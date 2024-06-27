@@ -25,7 +25,7 @@ type Input = {
 export function App() {
   const [issues, setIssues] = useState<SearchIssuesResponse | null>(null)
 
-  const {register, handleSubmit, formState: { errors }} = useForm<Input>({
+  const {register, handleSubmit, formState: { errors }, getValues} = useForm<Input>({
     mode: "onBlur"
   })
 
@@ -81,7 +81,7 @@ export function App() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 mb-20">
         {issues && issues.items.length > 0 ? (
           issues.items.map(item => (
-            <RepoCard key={item.number} issue={item} />
+            <RepoCard key={item.number} issue={item} repoAndUser={(getValues('searchText'))} />
           ))
         ) : (
           <div className='col-span-full' />

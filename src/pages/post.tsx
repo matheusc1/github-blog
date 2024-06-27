@@ -6,28 +6,45 @@ import {
   LucideMessageCircle,
 } from 'lucide-react'
 import cover from '../assets/header-cover.png'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
+import dayjs from "dayjs"
+import "dayjs/locale/pt-br"
+import relativeTime from "dayjs/plugin/relativeTime"
 
-const markdown = `
-**Programming languages all have built-in data structures,
-but these often differ from one language to another.**
-This article attempts to list the built-in data structures available in JavaScript and what properties they have.
-These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.  
-&nbsp;  
+dayjs.extend(relativeTime)
+dayjs.locale('pt-br')
 
-[Dynamic Typing](https://github.com/matheusc1)  
-JavaScript is a loosely typed and dynamic language. Variables in JavaScript are not directly 
-associated with any particular value type, and any variable can be assigned (and re-assigned) values of all types:  
-&nbsp;  
-~~~js
-let foo = 42;       //   foo is now a number  
-foo = 'bar';        //   foo is now a string  
-foo = true;         //   foo is now a boolean
-~~~
-`
+interface IssuePostProps {
+  url: URL
+  title: string
+  user: {
+    login: string
+  }
+  comments: number
+  created_at: string
+  body: string
+}
 
 export function Post() {
+  const [issue, setIssue] = useState<IssuePostProps>()
+  const { state } = useLocation()
+  const { issueNumber } = useParams()
+
+  console.log(state)
+
+  useEffect(() => {
+    async function getIssue() {
+      const response = await axios.get(`https://api.github.com/repos/${state}/issues/${issueNumber}`)
+  
+      setIssue(response.data)
+    }
+
+    getIssue()
+  }, [issueNumber, state])
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-start">
       <header>
@@ -44,7 +61,7 @@ export function Post() {
             </button>
           </Link>
 
-          <Link to="https://github.com/matheusc1">
+          <Link to={issue?.url || "https://github.com"}>
             <button className='flex items-center justify-center gap-2 cursor-pointer border-b border-transparent hover:border-blue hover:border-b'>
               <span className="uppercase text-blue font-bold text-xs">Github</span>
               <LucideArrowUpRightFromSquare strokeWidth={3} className="size-3 text-blue" />
@@ -52,42 +69,42 @@ export function Post() {
           </Link>
         </div>
 
-        <p className='font-bold text-2xl text-title'>JavaScript data types and data structures</p>
+        <p className='font-bold text-2xl text-title'>{issue?.title}</p>
 
         <div className="flex flex-col justify-between w-full">
           <div className="flex space-x-8">
             <div className="flex items-center gap-1">
               <LucideGithub className="size-4 text-label" />
-              <span className="text-subtitle">matheusc1</span>
+              <span className="text-subtitle">{issue?.user.login}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <LucideCalendarDays className="size-4 text-label" />
-              <span className="text-subtitle">Há 1 dia</span>
+              <span className="text-subtitle">{dayjs().to(issue?.created_at)}</span>
             </div>
 
             <div className="flex items-center gap-1">
               <LucideMessageCircle fill='#3A536B' className="size-4 text-label" />
-              <span className="text-subtitle">5 comentários</span>
+              <span className="text-subtitle">{issue?.comments}</span>
             </div>
           </div>
         </div>
       </div>
 
       <div className="w-full max-w-864 p-8 flex flex-col">
-        <Markdown  components={{
+        <Markdown components={{
           a: ({...props}) => <a className="text-blue underline decoration-blue" {...props} />,
-          code: ({ inline, className, children, ...props }) => {
+          code: ({ className, children }) => {
           const match = /language-(\w+)/.exec(className || '');
-          return !inline && match ? (
-            <pre className={`p-4 bg-post rounded ${className}`} {...props}>
+          return match ? (
+            <pre className={`p-4 bg-post rounded ${className}`}>
               <code className={`${match[1]}`}>{children}</code>
             </pre>
           ) : (
             <code>{children}</code>
           );
         }
-        }}>{markdown}</Markdown>
+        }}>{issue?.body}</Markdown>
       </div>
     </div>
   )
