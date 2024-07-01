@@ -51,3 +51,8 @@ npm run dev
 3. Faça suas alterações e commit: `git commit -m 'Adiciona nova feature'`
 4. Envie para o branch original: `git push origin minha-nova-feature`
 5. Crie um pull request
+
+
+## Licença 📄
+
+Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
