@@ -5,11 +5,11 @@ import {
   LucideGithub,
   LucideMessageCircle,
 } from 'lucide-react'
-import cover from '../assets/header-cover.png'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
+import cover from '../assets/bg.png'
 import dayjs from "dayjs"
 import "dayjs/locale/pt-br"
 import relativeTime from "dayjs/plugin/relativeTime"
@@ -47,9 +47,7 @@ export function Post() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start">
-      <header>
-        <img src={cover} className="w-full" alt="" />
-      </header>
+      <img src={cover} className="w-full" alt="" />
 
       <div className="flex flex-col justify-start bg-profile rounded-[10px] p-8 w-full max-w-864 -mt-24 gap-5 shadow-md">
 

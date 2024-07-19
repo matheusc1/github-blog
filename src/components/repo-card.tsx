@@ -16,7 +16,7 @@ interface RepoCardProps {
 export function RepoCard({ issue, repoAndUser }: RepoCardProps) {
   return (
     <Link to={`/post/${issue.number}`} state={repoAndUser}>
-      <button className="flex flex-col text-left w-card bg-post rounded-lg h-64 p-8 overflow-hidden
+      <button className="flex flex-col text-left w-96 sm:w-card bg-post rounded-lg h-64 p-8 overflow-hidden
       relative outline-none hover:ring-2 hover:ring-label focus-visible:ring-2 focus-visible:ring-blue">
         <div className="w-full flex justify-between">
           <p className="text-xl text-title font-bold w-60 -mt-1">
