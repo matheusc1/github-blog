@@ -46,11 +46,13 @@ export function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <img src={cover} className="w-full" alt="" />
+      <div>
+        <img src={cover} className="object-contain h-32 sm:h-auto" alt="logotipo" />
+      </div>
 
       <ProfileCard />
 
-      <div className="w-full max-w-sm sm:max-w-864 flex justify-between items-center mt-19">
+      <div className="w-full max-w-sm sm:max-w-864 flex justify-between items-center mt-8 sm:mt-19">
         <p className="text-subtitle text-lg font-bold">Publicações</p>
 
         {issues && issues?.total_count > 0 && (
