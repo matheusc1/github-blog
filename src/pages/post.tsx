@@ -47,9 +47,9 @@ export function Post() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-start">
-      <img src={cover} className="w-full" alt="" />
+      <img src={cover} className="w-full hidden" alt="" />
 
-      <div className="flex flex-col justify-start bg-profile rounded-[10px] p-8 w-full max-w-864 -mt-24 gap-5 shadow-md">
+      <div className="flex flex-col justify-start bg-profile rounded-[10px] mt-4 p-8 w-full max-w-sm sm:max-w-864 sm:-mt-24 gap-5 shadow-md">
 
         <div className="flex gap-2 items-center justify-between">
           <Link to="/">
