@@ -47,7 +47,7 @@ export function App() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
       <div>
-        <img src={cover} className="object-contain h-32 sm:h-auto" alt="logotipo" />
+        <img src={cover} className="hidden sm:block" alt="logotipo" />
       </div>
 
       <ProfileCard />
