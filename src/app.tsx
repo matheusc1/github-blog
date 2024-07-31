@@ -24,6 +24,7 @@ type Input = {
 
 export function App() {
   const [issues, setIssues] = useState<SearchIssuesResponse | null>(null)
+  const [reqError, setReqError] = useState(false)
 
   const { register, handleSubmit, formState: { errors }, getValues } = useForm<Input>({
     mode: "onBlur"
@@ -38,21 +39,21 @@ export function App() {
       })
 
       setIssues(response.data)
+      setReqError(false)
     } catch (error) {
       console.error('Erro na requisição:', error)
       setIssues(null)
+      setReqError(true)
     }
   }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <div>
-        <img src={cover} className="hidden sm:block" alt="logotipo" />
-      </div>
+    <div className="min-h-screen w-full flex flex-col items-center">
+      <img src={cover} className="hidden sm:block w-full" alt="logotipo" />
 
       <ProfileCard />
 
-      <div className="w-full max-w-sm sm:max-w-864 flex justify-between items-center mt-8 sm:mt-19">
+      <div className="w-full max-w-sm sm:max-w-864 flex justify-between items-center mt-8">
         <p className="text-subtitle text-lg font-bold">Publicações</p>
 
         {issues && issues?.total_count > 0 && (
@@ -68,22 +69,23 @@ export function App() {
           <input
             type="text"
             autoComplete="off"
-            placeholder="Buscar conteúdo: username/repository"
+            placeholder="Buscar issues: username/repository"
             className="w-full border border-border rounded-md py-3 px-4 bg-input
-            text-text placeholder:text-label outline-none focus-visible:ring-1 focus-visible:ring-blue"
+            text-default placeholder:text-label outline-none focus-visible:ring-1 focus-visible:ring-blue"
             {...register("searchText", { required: "Este campo é obrigatório" })}
           />
           <button className='bg-label hover:bg-opacity-70 py-3 px-4 rounded-md text-title font-semibold'>
-            Pesquisar
+            Buscar
           </button>
         </div>
 
-        <p className={`mt-2 text-red-500 text-xs ${errors.searchText ? '' : 'invisible'}`}>
+        <p className={`mt-2 text-red-500 text-xs ${errors.searchText ? 'visible' : 'invisible'}`}>
           Este campo é obrigatório
         </p>
       </form>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 mb-20">
+      {/* Testar o space-y-10  */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 mb-8">
         {issues && issues.items.length > 0 ? (
           issues.items.map(item => (
             <RepoCard key={item.number} issue={item} repoAndUser={(getValues('searchText'))} />
@@ -92,6 +94,15 @@ export function App() {
           <div className='col-span-full' />
         )}
       </div>
+
+      {reqError && (
+        <div className="flex items-center justify-center max-w-sm sm:max-w-xl text-center -mt-12">
+          <p>
+            Erro ao buscar issues no repositório. Por favor, verifique se a sua requisição está no formato correto:{' '}
+            <span className="font-bold">usuário/repositório.</span>
+          </p>
+        </div>
+      )}
 
     </div>
   )

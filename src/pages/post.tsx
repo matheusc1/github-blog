@@ -33,8 +33,6 @@ export function Post() {
   const { state } = useLocation()
   const { issueNumber } = useParams()
 
-  console.log(state)
-
   useEffect(() => {
     async function getIssue() {
       const response = await axios.get(`https://api.github.com/repos/${state}/issues/${issueNumber}`)
@@ -46,7 +44,7 @@ export function Post() {
   }, [issueNumber, state])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start">
+    <div className="min-h-screen w-full flex flex-col items-center">
       <img src={cover} className="w-full hidden sm:block" alt="" />
 
       <div className="flex flex-col justify-start bg-profile rounded-[10px] mt-4 p-8 w-full max-w-sm sm:max-w-864 sm:-mt-24 gap-5 shadow-md">
