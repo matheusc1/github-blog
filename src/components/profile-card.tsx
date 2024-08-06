@@ -6,6 +6,7 @@ import {
   LucideUsersRound
 } from "lucide-react"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 interface User {
   avatarUrl: string
@@ -53,7 +54,7 @@ export function ProfileCard() {
           <p className="font-bold text-center text-2xl text-title">{userInfo?.name}</p>
 
           <div className="hidden sm:flex gap-2 items-center cursor-pointer  border-b border-transparent hover:border-blue hover:border-b">
-            <a href={userInfo?.url} className="uppercase text-blue font-bold text-xs">Github</a>
+            <Link target="_blank" to={userInfo?.url || ''} className="uppercase text-blue font-bold text-xs">Github</Link>
             <LucideArrowUpRightFromSquare strokeWidth={3} className="size-3 text-blue" />
           </div>
         </div>

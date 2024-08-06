@@ -57,7 +57,7 @@ export function Post() {
             </button>
           </Link>
 
-          <Link to={issue?.url || "https://github.com"}>
+          <Link target="_blank" to={issue?.url || ''}>
             <button className='flex items-center justify-center gap-2 cursor-pointer border-b border-transparent hover:border-blue hover:border-b'>
               <span className="uppercase text-blue font-bold text-xs">Github</span>
               <LucideArrowUpRightFromSquare strokeWidth={3} className="size-3 text-blue" />

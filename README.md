@@ -10,12 +10,13 @@ Aplicação feita com React que usa as issues de um repositório do GitHub como 
 
 ## Tecnologias Utilizadas ⚛️
 
-- React
-- Vite
-- GitHub API
-- Axios (para requisições HTTP)
-- React Router (para navegação)
-- Tailwind CSS (para estilização)
+- **React**
+- **Vite**
+- **GitHub API**
+- **Axios**
+- **React Router**
+- **Tailwind CSS**
+- **Cypress**
 
 ## Instalação 🛠️
 
