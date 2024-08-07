@@ -1,20 +1,20 @@
 /// <reference types="cypress" />
 
 describe('Home page tests', () => {
-  it('search for non-existent repository by pressing Enter', () => {
+  it('should show error when searching for non-existent repository using Enter', () => {
     cy.visit('/')
     cy.get('input[name="repositorySearch"]').type('invalid/repo{enter}')
     cy.contains('Erro ao buscar issues no repositório').should('be.visible')
   })
 
-  it('search for a non-existent repository by clicking submit button', () => {
+  it('should show error when searching for non-existent repository using submit button', () => {
     cy.visit('/')
     cy.get('input[name="repositorySearch"]').type('invalid/repo')
     cy.get('button').click()
     cy.contains('Erro ao buscar issues no repositório').should('be.visible')
   })
 
-  it('open a new tab to see github profile', () => {
+  it('should open a new tab to view GitHub profile', () => {
     cy.visit('/')
     cy.wait(1000)
 
@@ -25,7 +25,7 @@ describe('Home page tests', () => {
       .should('include', 'github')
   })
 
-  it('search for issues in a repository', () => {
+  it('should display issues when searching for an existing repository', () => {
     cy.visit('/')
     cy.get('input[name="repositorySearch"]').type('matheusc1/github-blog')
     cy.get('button').click()
@@ -33,7 +33,7 @@ describe('Home page tests', () => {
     cy.get('a[href^="/post/"]').should('have.length.gte', 0)
   })
 
-  it('open the issue post in a new page', () => {
+  it('should open the issue post in a new page when clicked', () => {
     cy.visit('/')
     cy.get('input[name="repositorySearch"]').type('matheusc1/github-blog')
     cy.get('button').click()

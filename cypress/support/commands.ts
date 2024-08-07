@@ -11,8 +11,13 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
+Cypress.Commands.add('getIssues', () => {
+  cy.visit('/')
+  cy.get('input[name="repositorySearch"]').type('matheusc1/github-blog')
+  cy.get('button').click()
+
+  cy.get('a[href="/post/1"]').click()
+})
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
