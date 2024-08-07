@@ -19,7 +19,7 @@ interface SearchIssuesResponse {
 }
 
 type Input = {
-  searchText: string
+  repositorySearch: string
 }
 
 export function App() {
@@ -34,7 +34,7 @@ export function App() {
     try {
       const response = await axios.get('https://api.github.com/search/issues', {
         params: {
-          q: `repo:${data.searchText}`,
+          q: `repo:${data.repositorySearch}`,
         }
       })
 
@@ -72,23 +72,22 @@ export function App() {
             placeholder="Buscar issues: username/repository"
             className="w-full border border-border rounded-md py-3 px-4 bg-input
             text-default placeholder:text-label outline-none focus-visible:ring-1 focus-visible:ring-blue"
-            {...register("searchText", { required: "Este campo é obrigatório" })}
+            {...register("repositorySearch", { required: "Este campo é obrigatório" })}
           />
           <button className='bg-label hover:bg-opacity-70 py-3 px-4 rounded-md text-title font-semibold'>
             Buscar
           </button>
         </div>
 
-        <p className={`mt-2 text-red-500 text-xs ${errors.searchText ? 'visible' : 'invisible'}`}>
+        <p className={`mt-2 text-red-500 text-xs ${errors.repositorySearch ? 'visible' : 'invisible'}`}>
           Este campo é obrigatório
         </p>
       </form>
 
-      {/* Testar o space-y-10  */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 mb-8">
         {issues && issues.items.length > 0 ? (
           issues.items.map(item => (
-            <RepoCard key={item.number} issue={item} repoAndUser={(getValues('searchText'))} />
+            <RepoCard key={item.number} issue={item} repoAndUser={(getValues('repositorySearch'))} />
           ))
         ) : (
           <div className='col-span-full' />
