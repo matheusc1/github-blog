@@ -57,12 +57,10 @@ export function Post() {
             </button>
           </Link>
 
-          <Link target="_blank" to={issue?.url || ''}>
-            <button className='flex items-center justify-center gap-2 cursor-pointer border-b border-transparent hover:border-blue hover:border-b'>
-              <span className="uppercase text-blue font-bold text-xs">Github</span>
-              <LucideArrowUpRightFromSquare strokeWidth={3} className="size-3 text-blue" />
-            </button>
-          </Link>
+          <div className="flex gap-2 items-center cursor-pointer  border-b border-transparent hover:border-blue hover:border-b">
+            <Link target="_blank" to={issue?.url || ''} className="uppercase text-blue font-bold text-xs">Github</Link>
+            <LucideArrowUpRightFromSquare strokeWidth={3} className="size-3 text-blue" />
+          </div>
         </div>
 
         <p className='font-bold text-2xl text-title'>{issue?.title}</p>
