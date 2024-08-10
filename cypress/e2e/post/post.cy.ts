@@ -12,7 +12,9 @@ describe('Issue post page tests', () => {
     cy.getIssues()
 
     cy.get('a').contains('Github')
-      .should('include', 'matheusc1/github-blog/issues/1')
+      .should('be.visible')
       .and('have.attr', 'target', '_blank')
+      .invoke('attr', 'href')
+      .should('include', 'matheusc1/github-blog/issues/1')
   })
 })
