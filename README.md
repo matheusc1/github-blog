@@ -45,6 +45,18 @@ npm run dev
 3. As issues do repositório serão listadas em cards.
 4. Clique em uma issue para ver os detalhes em formato de post.
 
+## Executando os testes 💻
+
+Após instalar as dependências e iniciar o servidor, basta executar o cypress para rodar os testes:
+
+```sh
+npx cypress open
+```
+
+Com o Cypress aberto, selecione a opção "E2E Testing". O próximo passo é selecionar com qual navegador você vai executar os testes e clicar em "Start E2E Testing in (Opção escolhida)".
+
+Depois de feito isso, irá aparecer uma tela com o nome dos arquivos de teste `home.cy.ts` e `post.cy.ts.` Após isso basta clicar em um deles.
+
 ## Contribuição 🤝
 
 1. Faça um fork do projeto
