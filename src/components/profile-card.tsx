@@ -1,52 +1,23 @@
-import axios from "axios"
+import { useQuery } from "@tanstack/react-query"
 import {
   LucideArrowUpRightFromSquare,
   LucideGithub,
   LucideBuilding,
   LucideUsersRound
 } from "lucide-react"
-import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-
-interface User {
-  avatarUrl: string
-  name: string
-  bio: string
-  username: string
-  company?: string
-  followers: number
-  url: string
-}
+import { GetUserInfo } from "../api/get-user-info"
 
 export function ProfileCard() {
-  const [userInfo, setUserInfo] = useState<User>()
-
-  useEffect(() => {
-    async function getUserInfo() {
-      try {
-        const { data } = await axios.get('https://api.github.com/users/matheusc1')
-
-        const userInfoData = {
-          avatarUrl: data.avatar_url,
-          name: data.name,
-          bio: data.bio,
-          username: data.login,
-          followers: data.followers,
-          company: data?.company,
-          url: data.html_url
-        }
-        setUserInfo(userInfoData)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-
-    getUserInfo()
-  }, [])
+  const { data: userInfo } = useQuery({
+    queryKey: ['user-info'],
+    queryFn: () => GetUserInfo({ username: 'matheusc1' }),
+    staleTime: Infinity
+  })
 
   return (
     <div className="sm:flex block bg-profile rounded-[10px] p-8 w-full max-w-sm sm:max-w-864 mt-4 sm:-mt-24 gap-8 shadow-md">
-      <img src={userInfo?.avatarUrl} className="size-36 rounded-lg mx-auto sm:mx-0" alt="" />
+      <img src={userInfo?.avatar_url} className="size-36 rounded-lg mx-auto sm:mx-0" alt="" />
 
       <div className="sm:flex sm:flex-col sm:justify-between space-y-3 w-full">
 
@@ -54,7 +25,7 @@ export function ProfileCard() {
           <p className="font-bold text-center text-2xl text-title">{userInfo?.name}</p>
 
           <div className="hidden sm:flex gap-2 items-center cursor-pointer  border-b border-transparent hover:border-blue hover:border-b">
-            <Link target="_blank" to={userInfo?.url || ''} className="uppercase text-blue font-bold text-xs">Github</Link>
+            <Link target="_blank" to={userInfo?.html_url || ''} className="uppercase text-blue font-bold text-xs">Github</Link>
             <LucideArrowUpRightFromSquare strokeWidth={3} className="size-3 text-blue" />
           </div>
         </div>
@@ -66,7 +37,7 @@ export function ProfileCard() {
         <div className="flex space-x-8 justify-center sm:justify-start">
           <div className="flex items-center gap-1">
             <LucideGithub className="size-4 text-label" />
-            <span className="text-subtitle">{userInfo?.username}</span>
+            <span className="text-subtitle">{userInfo?.login}</span>
           </div>
 
           {
