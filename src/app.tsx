@@ -53,7 +53,7 @@ export function App() {
 
       <ProfileCard />
 
-      <div className="w-full max-w-sm sm:max-w-864 flex justify-between items-center mt-8">
+      <div className="w-full max-w-sm sm:max-w-864 px-2 sm:p-0 flex justify-between items-center mt-8">
         <p className="text-subtitle text-lg font-bold">Publicações</p>
 
         {issues && issues?.total_count > 0 && (
@@ -64,7 +64,7 @@ export function App() {
         )}
       </div>
 
-      <form className='w-full max-w-sm sm:max-w-864' onSubmit={handleSubmit(onSubmit)}>
+      <form className='w-full max-w-sm sm:max-w-864 px-2 sm:p-0' onSubmit={handleSubmit(onSubmit)}>
         <div className='flex mt-3 gap-3'>
           <input
             type="text"
@@ -84,18 +84,18 @@ export function App() {
         </p>
       </form>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 px-2 sm:px-0 gap-8 mt-10 mb-8">
         {issues && issues.items.length > 0 ? (
           issues.items.map(item => (
             <RepoCard key={item.number} issue={item} repoAndUser={(getValues('repositorySearch'))} />
           ))
         ) : (
-          <div className='col-span-full' />
+          <div className='col-span-full w-96 h-40' />
         )}
       </div>
 
       {reqError && (
-        <div className="flex items-center justify-center max-w-sm sm:max-w-xl text-center -mt-12">
+        <div className="flex items-center justify-center max-w-sm sm:max-w-xl px-2 sm:px-0 text-center -mt-52">
           <p>
             Erro ao buscar issues no repositório. Por favor, verifique se a sua requisição está no formato correto:{' '}
             <span className="font-bold">usuário/repositório.</span>

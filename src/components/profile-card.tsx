@@ -16,7 +16,7 @@ export function ProfileCard() {
   })
 
   return (
-    <div className="sm:flex block bg-profile rounded-[10px] p-8 w-full max-w-sm sm:max-w-864 mt-4 sm:-mt-24 gap-8 shadow-md">
+    <div className="sm:flex block bg-profile rounded-[10px] p-8 w-full max-w-[368px] sm:max-w-864 mt-4 sm:-mt-24 gap-8 shadow-md">
       <img src={userInfo?.avatar_url} className="size-36 rounded-lg mx-auto sm:mx-0" alt="" />
 
       <div className="sm:flex sm:flex-col sm:justify-between space-y-3 w-full">

@@ -47,7 +47,7 @@ export function Post() {
     <div className="min-h-screen w-full flex flex-col items-center">
       <img src={cover} className="w-full hidden sm:block" alt="" />
 
-      <div className="flex flex-col justify-start bg-profile rounded-[10px] mt-4 p-8 w-full max-w-sm sm:max-w-864 sm:-mt-24 gap-5 shadow-md">
+      <div className="flex flex-col justify-start bg-profile rounded-[10px] mt-4 p-8 w-full max-w-[368px] sm:max-w-864 sm:-mt-24 gap-5 shadow-md">
 
         <div className="flex gap-2 items-center justify-between">
           <Link to="/">
@@ -85,7 +85,7 @@ export function Post() {
         </div>
       </div>
 
-      <div className="w-full max-w-864 p-8 flex flex-col">
+      <div className="w-full max-w-sm sm:max-w-864 p-6 sm:p-8 flex flex-col">
         <Markdown components={{
           a: ({...props}) => <a className="text-blue underline decoration-blue" {...props} />,
           code: ({ className, children }) => {
