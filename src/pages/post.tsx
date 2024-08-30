@@ -7,41 +7,25 @@ import {
 } from 'lucide-react'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import Markdown from 'react-markdown'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
 import cover from '../assets/bg.png'
 import dayjs from "dayjs"
 import "dayjs/locale/pt-br"
 import relativeTime from "dayjs/plugin/relativeTime"
+import { useQuery } from '@tanstack/react-query'
+import { GetIssueDetailed } from '../api/get-issue-detailed'
 
 dayjs.extend(relativeTime)
 dayjs.locale('pt-br')
 
-interface IssuePostProps {
-  url: URL
-  title: string
-  user: {
-    login: string
-  }
-  comments: number
-  created_at: string
-  body: string
-}
 
 export function Post() {
-  const [issue, setIssue] = useState<IssuePostProps>()
   const { state } = useLocation()
   const { issueNumber } = useParams()
 
-  useEffect(() => {
-    async function getIssue() {
-      const response = await axios.get(`https://api.github.com/repos/${state}/issues/${issueNumber}`)
-  
-      setIssue(response.data)
-    }
-
-    getIssue()
-  }, [issueNumber, state])
+  const { data: issue } = useQuery({
+    queryKey: ['get-issue-details', state, issueNumber],
+    queryFn: () => GetIssueDetailed({ state, issueNumber: issueNumber || '' })
+  })
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center">

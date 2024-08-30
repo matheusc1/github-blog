@@ -1,8 +1,9 @@
-import axios from 'axios'
 import cover from './assets/bg.png'
 import { ProfileCard } from './components/profile-card'
 import { RepoCard } from './components/repo-card'
 import { useForm } from 'react-hook-form'
+import { useQuery } from '@tanstack/react-query'
+import { GetIssues } from './api/get-issues'
 import { useState } from 'react'
 
 export interface Issue {
@@ -12,40 +13,26 @@ export interface Issue {
   body: string
 }
 
-interface SearchIssuesResponse {
-  total_count: number
-  incomplete_results: boolean
-  items: Issue[]
-}
-
 type Input = {
   repositorySearch: string
 }
 
 export function App() {
-  const [issues, setIssues] = useState<SearchIssuesResponse | null>(null)
-  const [reqError, setReqError] = useState(false)
-
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm<Input>({
+  const { register, handleSubmit ,formState: { errors }, getValues, } = useForm<Input>({
     mode: "onBlur"
   })
 
-  async function onSubmit(data: Input) {
-    try {
-      const response = await axios.get('https://api.github.com/search/issues', {
-        params: {
-          q: `repo:${data.repositorySearch}`,
-        }
-      })
+  const [repositorySearch, setRepositorySearch] = useState<string | null>(null)
 
-      setIssues(response.data)
-      setReqError(false)
-    } catch (error) {
-      console.error('Erro na requisição:', error)
-      setIssues(null)
-      setReqError(true)
-    }
-  }
+  const { data: issues, isError } = useQuery({
+    queryKey: ['get-issues', repositorySearch],
+    queryFn: () => GetIssues({ repositorySearch: repositorySearch || '' }),
+    enabled: !!repositorySearch
+  })
+
+  const onSubmit = (data: Input) => {
+    setRepositorySearch(data.repositorySearch);
+  };
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center">
@@ -80,7 +67,7 @@ export function App() {
         </div>
 
         <p className={`mt-2 text-red-500 text-xs ${errors.repositorySearch ? 'visible' : 'invisible'}`}>
-          Este campo é obrigatório
+          {errors.repositorySearch?.message}
         </p>
       </form>
 
@@ -94,7 +81,7 @@ export function App() {
         )}
       </div>
 
-      {reqError && (
+      {isError && (
         <div className="flex items-center justify-center max-w-sm sm:max-w-xl px-2 sm:px-0 text-center -mt-52">
           <p>
             Erro ao buscar issues no repositório. Por favor, verifique se a sua requisição está no formato correto:{' '}

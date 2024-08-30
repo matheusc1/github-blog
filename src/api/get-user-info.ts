@@ -15,9 +15,7 @@ interface GetUserResponse {
 }
 
 export async function GetUserInfo({ username }: GetUserParams) {
-  const response = await api.get<GetUserResponse>(
-    `https://api.github.com/users/${username}`
-  )
+  const response = await api.get<GetUserResponse>(`/users/${username}`)
 
   return response.data
 }

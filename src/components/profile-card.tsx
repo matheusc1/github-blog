@@ -10,7 +10,7 @@ import { GetUserInfo } from "../api/get-user-info"
 
 export function ProfileCard() {
   const { data: userInfo } = useQuery({
-    queryKey: ['user-info'],
+    queryKey: ['get-user-info'],
     queryFn: () => GetUserInfo({ username: 'matheusc1' }),
     staleTime: Infinity
   })
