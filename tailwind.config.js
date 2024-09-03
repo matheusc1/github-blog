@@ -26,7 +26,11 @@ export default {
         card: '26rem',
       },
       maxWidth: {
-        864: '54rem'
+        864: '54rem',
+        card: '26rem'
+      },
+      backgroundImage: {
+        logo: "url('/bg.png')"
       }
     },
   },
