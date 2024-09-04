@@ -1,4 +1,4 @@
-import type { Issue } from "../app"
+import type { Issue } from "../pages/search-issues"
 import { api } from "../lib/axios"
 
 export interface GetIssuesParams {
