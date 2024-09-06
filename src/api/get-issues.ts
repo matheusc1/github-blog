@@ -1,5 +1,5 @@
-import type { Issue } from "../pages/search-issues"
-import { api } from "../lib/axios"
+import { api } from '../lib/axios'
+import type { Issue } from '../pages/search-issues'
 
 export interface GetIssuesParams {
   repositorySearch: string
@@ -15,7 +15,7 @@ export async function GetIssues({ repositorySearch }: GetIssuesParams) {
   const response = await api.get<GetIssuesResponse>('/search/issues', {
     params: {
       q: `repo:${repositorySearch}`,
-    }
+    },
   })
 
   return response.data

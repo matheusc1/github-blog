@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom"
-import dayjs from "dayjs"
-import "dayjs/locale/pt-br"
-import relativeTime from "dayjs/plugin/relativeTime"
-import Markdown from "react-markdown"
+import 'dayjs/locale/pt-br'
+
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import Markdown from 'react-markdown'
+import { Link } from 'react-router-dom'
+
 import { Issue } from './index'
 
 dayjs.extend(relativeTime)
@@ -13,18 +15,26 @@ interface RepositoryCardProps {
   repositoryAndUser: string
 }
 
-export function RepositoryCard({ issue, repositoryAndUser }: RepositoryCardProps) {
+export function RepositoryCard({
+  issue,
+  repositoryAndUser,
+}: RepositoryCardProps) {
   return (
     <Link to={`/post/${issue.number}`} state={repositoryAndUser}>
-      <button className="flex flex-col text-left max-w-sm sm:max-w-card bg-post rounded-lg h-64 p-8 hover:ring-2 hover:ring-label focus-visible:ring-2 focus-visible:ring-blue">
-        <div className="w-full flex flex-col sm:flex-row sm:justify-between">
-          <p className="text-xl text-title font-bold w-60 -mt-1">
+      <button className="flex h-64 max-w-sm flex-col rounded-lg bg-post p-8 text-left hover:ring-2 hover:ring-label focus-visible:ring-2 focus-visible:ring-blue sm:max-w-card">
+        <div className="flex w-full flex-col sm:flex-row sm:justify-between">
+          <p className="-mt-1 w-60 text-xl font-bold text-title">
             {issue.title}
           </p>
-          <span className="text-sm text-span">{dayjs().to(issue.created_at)}</span>
+          <span className="text-sm text-span">
+            {dayjs().to(issue.created_at)}
+          </span>
         </div>
 
-        <Markdown skipHtml className="text-span mt-5 text-ellipsis max-w-[352px] line-clamp-4">
+        <Markdown
+          skipHtml
+          className="mt-5 line-clamp-4 max-w-[352px] text-ellipsis text-span"
+        >
           {issue.body}
         </Markdown>
       </button>

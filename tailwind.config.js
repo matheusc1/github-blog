@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
@@ -17,21 +14,21 @@ export default {
         post: '#112131',
         profile: '#0B1B2B',
         background: '#071422',
-        input: '#040F1A'
+        input: '#040F1A',
       },
       margin: {
-        19: '4.5rem'
+        19: '4.5rem',
       },
       width: {
         card: '26rem',
       },
       maxWidth: {
         864: '54rem',
-        card: '26rem'
+        card: '26rem',
       },
       backgroundImage: {
-        logo: "url('/bg.png')"
-      }
+        logo: "url('/bg.png')",
+      },
     },
   },
   plugins: [],

@@ -1,7 +1,7 @@
 import './index.css'
 
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { QueryClientProvider } from '@tanstack/react-query'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import { queryClient } from './lib/react-query.ts'
 import { Post } from './pages/post/index.tsx'
@@ -9,11 +9,11 @@ import { SearchIssuesPage } from './pages/search-issues/index.tsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <SearchIssuesPage />,
   },
   {
-    path: "/post/:issueNumber",
+    path: '/post/:issueNumber',
     element: <Post />,
   },
 ])
